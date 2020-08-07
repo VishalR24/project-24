@@ -30,7 +30,13 @@ function setup() {
 	
 	engine = Engine.create();
 	world = engine.world;
-
+	
+	var options = {
+		isStatic: false,
+		restitution:0.3,
+		friction:0.5,
+		density:1.2
+	}
 	//Create the Bodies Here.
 	bottomRectBody = Bodies.rectangle(790, 250, 125, 20,{isStatic: true})
     rightRectBody = Bodies.rectangle(850, 235, 20, 50,{isStatic: true})
@@ -38,12 +44,7 @@ function setup() {
     groundBody = Bodies.rectangle(500, 280, 1000, 25,{isStatic: true})
 	World.add(world, groundBody);
 	paperBody = Bodies.rectangle(100, 260,30, 30, options);
-    var options = {
-		isStatic: false,
-		restitution:0.3,
-		friction:0.5,
-		density:1.2
-	}
+
 	World.add(world, paperBody)
 	World.add(world,bottomRectBody);
 	World.add(world, bottomRect);
@@ -69,14 +70,14 @@ function draw() {
   leftRect.y = leftRectBody.position.y	
   rightRect.x = rightRectBody.position.x
   rightRect.y = rightRectBody.position.y
-  keyPressed();
+  //keyPressed();
   drawSprites();
  
 }
 
 function keyPressed(){
 	if(keyCode === UP_ARROW){
-		Matter.Body.applyForce(paper.body,paper.body.position,{x:85,y:85})
+		Matter.Body.applyForce(paperBody,paperBody.position,{x:50,y:-45})
 	}
 }
 
